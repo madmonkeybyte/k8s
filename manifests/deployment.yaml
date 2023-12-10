@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      env: production
+  template:
+    name: pod-nginx
+    metadata:
+      labels:
+        env: production
+    spec:
+      containers:
+      - name: pod-nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
