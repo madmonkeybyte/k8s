@@ -7,7 +7,7 @@
 
 - [k8s](https://www.udemy.com/course/kubernetes-power-profissional-formacao-inicial-completa)
 
-## Orquestration
+## Orchestration
 
 ### Commnads
 
@@ -45,3 +45,44 @@ watch kubectl get pods
 - Roll back
 
 ![deployments](assets/deployments.png)
+
+- Simple nginx deployment
+
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      env: production
+  template:
+    name: pod-nginx
+    metadata:
+      labels:
+        env: production
+    spec:
+      containers:
+      - name: pod-nginx
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+```
+
+>> Same rules apply here, you can scale on the fly any deployment.
+
+- Checkout the deployment
+
+```bash
+kubectl rollout status deployment.apps/frontend-deployment
+kubectl describe deployment.apps/frontend-deployment
+```

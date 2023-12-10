@@ -11,13 +11,13 @@ spec:
     matchLabels:
       env: production
   template:
-    name: pod-nginx
     metadata:
       labels:
+        name: pod-nginx
         env: production
     spec:
       containers:
-      - name: pod-nginx
+      - name: nginx-container
         image: nginx
         resources:
           limits:
