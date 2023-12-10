@@ -86,3 +86,28 @@ spec:
 kubectl rollout status deployment.apps/frontend-deployment
 kubectl describe deployment.apps/frontend-deployment
 ```
+
+- Remvoving deployments
+
+```bash
+kubectl delete deployments frontend-deployment
+kubectl get pods
+kubectl get deployments
+```
+
+- Get the deployment history
+
+```bash
+kubectl rollout history
+```
+
+>> Observe scale the deployment does not change it revision.
+
+- Rollback
+
+
+```bash
+kubectl rollout history deployment.apps/frontend-deployment --revision=2
+```
+
+- The command abouve get info about a specific version (--revision=2).
