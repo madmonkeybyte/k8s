@@ -1,0 +1,17 @@
+---
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: my-pod-solution
+  labels:
+    name: my-pod-podsolution
+spec:
+  containers:
+  - name: my-mod-apache2
+    image: httpd
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
